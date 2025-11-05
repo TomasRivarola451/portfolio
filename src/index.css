@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fondo global fijo para toda la web */
+body {
+  background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* --- Fix para mobile: emula el background fijo --- */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: fixed;
+  }
+
+  html::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
+    z-index: -1;
+    pointer-events: none;
+  }
+}

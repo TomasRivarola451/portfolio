@@ -1,0 +1,219 @@
+/* === NAVBAR GENERAL === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(10, 10, 20, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeDown 0.8s ease forwards;
+  opacity: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === CONTENEDOR INTERNO === */
+.navbar-container {
+  width: 90%;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  opacity: 1;
+}
+
+/* === LOGO === */
+.navbar-logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  animation: fadeInLeft 0.8s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+  cursor: pointer;
+}
+.logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+.logo:hover { transform: scale(1.06); opacity: 0.9; }
+
+/* === LINKS CENTRADOS === */
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  opacity: 1;
+}
+
+.navbar-links span {
+  color: #e5e5e5;
+  font-size: 1.05rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+/* EFECTO HOVER */
+.navbar-links span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #4d64f4;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+.navbar-links span:hover::after { width: 100%; }
+.navbar-links span:hover { color: #ffffff; }
+
+/* === ICONO HAMBURGUESA === */
+.menu-icon {
+  display: none;
+  justify-content: flex-end;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.menu-icon:hover { transform: scale(1.1); }
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .navbar-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(10, 10, 20, 0.85);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: transform 0.36s cubic-bezier(.2,.9,.2,1), opacity 0.24s ease;
+  }
+
+  .navbar-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .menu-icon { display: flex; justify-content: flex-end; }
+  .navbar-links span::after { display: none; }
+}
+
+/* === BOTÓN DE IDIOMA === */
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: #e5e5e5;
+  font-size: 1.05rem;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-left: 1rem;
+}
+
+.lang-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #4d64f4;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+/* === CORRECCIÓN DE CURSOR === */
+.navbar-links a,
+.logo,
+.lang-btn {
+  cursor: pointer !important;
+}
+
+.lang-btn:hover::after { width: 100%; }
+.lang-btn:hover { color: #ffffff; }
+
+/* === CONTENEDOR DERECHO === */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* === DESKTOP === */
+@media (min-width: 769px) {
+  .navbar-container {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .navbar-right { justify-content: flex-end; }
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .lang-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .lang-btn::after { display: none; }
+}
+
+/* === ANIMACIONES DESKTOP === */
+@media (min-width: 769px) {
+  .navbar-container {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .navbar-logo {
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease forwards;
+    animation-delay: 0.5s;
+  }
+
+  .navbar-links {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.7s;
+  }
+}

@@ -1,0 +1,161 @@
+/* === Skills.css limpio y corregido === */
+
+.skills-section {
+  width: 100%;
+  padding: 100px 0;
+  text-align: center;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+.skills-title {
+  font-size: 3.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Carrusel principal === */
+.skills-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* Degradado lateral (solo a los costados, muy suave y detrás de los íconos) */
+.skills-carousel::before,
+.skills-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 180px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 7, 18, 1) 0%,
+    rgba(7, 7, 18, 0.8) 30%,
+    rgba(7, 7, 18, 0) 100%
+  );
+}
+
+.skills-carousel::after {
+  right: 0;
+  transform: rotateY(180deg);
+}
+
+.skills-carousel::before {
+  left: 0;
+}
+
+.skills-track {
+  display: flex;
+  gap: 80px;
+  animation: scroll-left 25s linear infinite;
+  will-change: transform;
+  z-index: 2; /* arriba del degradado */
+}
+
+.skills-track.reverse {
+  animation: scroll-right 25s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* === Ítems === */
+.skill-item {
+  flex: 0 0 auto;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.skill-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: grayscale(1) brightness(1.05);
+  transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+}
+
+.skill-item:hover img {
+  filter: grayscale(0) brightness(1.15);
+  opacity: 1;
+  transform: scale(1.07);
+}
+
+.skill-item p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #bdbdbd;
+  letter-spacing: 0.5px;
+}
+
+.skill-item:hover p {
+  color: #fff;
+}
+
+/* GitHub blanco */
+.skill-item img[src*="github"] {
+  filter: invert(1) brightness(1.2);
+}
+
+/* === Mobile === */
+@media (max-width: 768px) {
+  .skills-title {
+    font-size: 2rem;
+  }
+
+  .skills-carousel {
+    width: 92%;
+  }
+
+  .skills-track {
+    gap: 60px;
+    animation-duration: 18s;
+  }
+
+  .skills-track.reverse {
+    animation-duration: 18s;
+  }
+
+  .skill-item {
+    width: 100px;
+  }
+
+  .skill-item img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skills-carousel::before,
+  .skills-carousel::after {
+    width: 100px;
+  }
+}
