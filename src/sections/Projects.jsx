@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./../styles/projects.css";
+import "./../styles/Projects.css";
 import { FaGlobe, FaGithub } from "react-icons/fa";
 import { SiReact, SiTailwindcss, SiNextdotjs } from "react-icons/si";
 import AOS from "aos";
