@@ -1,4 +1,4 @@
-@import './variables.css';
+@import './styles/variables.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
