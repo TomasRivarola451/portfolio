@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === Fondo global fijo para toda la web === */
+
 body {
   background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
   background-attachment: fixed;
@@ -14,19 +14,16 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* === Corrección de fondo para móviles iOS/Android === */
-/* Algunos navegadores ignoran background-attachment: fixed en mobile */
 @media (max-width: 1024px) {
   body {
     background-attachment: scroll !important;
-    background-size: cover !important;
-    background-position: center !important;
     position: relative;
   }
 
-  html::before {
+  body::before {
     content: "";
     position: fixed;
     inset: 0;
@@ -38,7 +35,6 @@ body {
   }
 }
 
-/* === Fondo global del div .bg-gradient === */
 .bg-gradient {
   background: radial-gradient(120% 120% at 50% 10%, #000000 40%, #010133 100%);
   background-attachment: fixed;
@@ -49,12 +45,9 @@ body {
   z-index: 0;
 }
 
-/* Fallback de .bg-gradient para móviles */
 @media (max-width: 1024px) {
   .bg-gradient {
     background-attachment: scroll !important;
-    background-size: cover !important;
-    background-position: center !important;
   }
 
   .bg-gradient::before {
