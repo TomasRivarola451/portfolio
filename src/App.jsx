@@ -8,7 +8,7 @@ import Contact from "./sections/Contact";
 import "./styles/globals.css";
 
 function App() {
-  // ✅ idioma por defecto: inglés
+  // idioma por defecto: inglés
   const [language, setLanguage] = useState("en");
 
   const toggleLanguage = () => {

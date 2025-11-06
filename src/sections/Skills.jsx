@@ -12,10 +12,12 @@ const skills = [
   { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
 ];
 
-const Skills = () => {
+const Skills = ({ language }) => {
   return (
     <section className="skills-section" id="skills">
-      <h2 className="skills-title">Skills</h2>
+      <h2 className="skills-title">
+        {language === "es" ? "Habilidades" : "Skills"}
+      </h2>
 
       <div className="skills-wrapper">
         {/* Carrusel superior */}

@@ -6,6 +6,13 @@ import { FaGithub, FaLinkedinIn, FaInstagram, FaEnvelope } from "react-icons/fa"
 const Hero = ({ language }) => {
   const isEnglish = language === "en";
 
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="hero" id="hero">
       <Orb />
@@ -28,12 +35,12 @@ const Hero = ({ language }) => {
         </p>
 
         <div className="hero-buttons">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={handleScrollToContact}>
             {isEnglish ? "Get in touch" : "Contactame"}
           </button>
 
           <a
-            href="https://drive.google.com/uc?export=download&id=119Fa2BdKl2KGVlzfqUCnP6cTuRuSGsVt"
+            href="https://drive.google.com/file/d/1nJDFfdojj2Nn2JnIqIec0j9ETY6L5Fu_/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-outline"

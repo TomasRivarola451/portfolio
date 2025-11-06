@@ -1,14 +1,14 @@
 .contact-section {
-  padding: 5rem 2rem;
+  padding: 4rem 1.6rem;
   background: transparent;
   color: #fff;
 }
 
 .contact-title {
-  font-size: 3.4rem;
+  font-size: 2.7rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3.2rem;
   letter-spacing: 1px;
   color: #ffffff;
 }
@@ -16,17 +16,17 @@
 .contact-container {
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
-  gap: 3rem;
+  gap: 2.4rem;
   align-items: stretch;
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-/* --- SOCIAL CARDS --- */
+
 .social-cards {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .social-card {
@@ -34,41 +34,41 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.6rem;
   background: transparent;
   backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 25px rgba(77, 100, 244, 0.1);
+  box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
   transition: all 0.3s ease;
-  height: 160px;
+  height: 128px;
 }
 
 .social-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(77, 100, 244, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px rgba(77, 100, 244, 0.25);
 }
 
-/* ICONOS: más grandes, centrados y con buen line-height */
+
 .social-icon {
-  font-size: 3.8rem;
+  font-size: 3rem;
   color: #4d64f4;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
 
-/* TEXTOS */
+
 .social-card h3 {
-  margin-bottom: 0.4rem;
-  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
 }
 
 .social-card a {
   color: #bbb;
-  font-size: 0.95rem;
+  font-size: 0.76rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -77,33 +77,33 @@
   color: #4d64f4;
 }
 
-/* --- FORM CARD --- */
+
 .form-card {
-  border-radius: 20px;
-  padding: 3rem;
+  border-radius: 16px;
+  padding: 2.4rem;
   background: transparent;
   backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 25px rgba(77, 100, 244, 0.1);
+  box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
   transition: all 0.3s ease;
 }
 
 .form-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(77, 100, 244, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px rgba(77, 100, 244, 0.25);
 }
 
 /* --- FORM --- */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 1.4rem;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 label {
@@ -111,16 +111,14 @@ label {
   font-weight: 500;
 }
 
-/* ---------- OVERRIDES PARA QUE LOS CAMPOS QUEDEN REALES (más altos y espaciosos) ---------- */
-/* Uso selectores más específicos para asegurar que estos estilos prevalezcan */
 .form-card .contact-form input,
 .form-card .contact-form textarea,
 .form-card input,
 .form-card textarea {
   width: 100%;
-  padding: 1.6rem 1.2rem;      /* espacio interior mayor */
-  font-size: 1.08rem;         /* texto un poco más grande */
-  border-radius: 14px;
+  padding: 1.28rem 0.96rem;
+  font-size: 0.86rem;
+  border-radius: 11px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: transparent;
   color: #fff;
@@ -130,33 +128,31 @@ label {
   box-sizing: border-box;
 }
 
-/* textarea específicamente más alto y cómodo */
 .form-card .contact-form textarea,
 .form-card textarea {
-  min-height: 220px;          /* bastante alto para no sentirse apretado */
-  padding-top: 1.3rem;
-  padding-bottom: 1.3rem;
+  min-height: 176px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   line-height: 1.6;
   resize: vertical;
 }
 
-/* focus state (mantener tu estilo) */
 .form-card .contact-form input:focus,
 .form-card .contact-form textarea:focus,
 .form-card input:focus,
 .form-card textarea:focus {
   border-color: #4d64f4;
-  box-shadow: 0 0 12px rgba(77, 100, 244, 0.4);
+  box-shadow: 0 0 10px rgba(77, 100, 244, 0.4);
 }
 
-/* BUTTON (sin cambios funcionales) */
+/* BUTTON */
 .send-btn {
   background-color: #4d64f4;
   color: #fff;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  font-size: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 24px;
+  font-size: 0.8rem;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -164,15 +160,15 @@ label {
 
 .send-btn:hover {
   background-color: #5f74ff;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* STATUS */
 .success-message,
 .error-message {
   text-align: center;
-  font-size: 0.95rem;
-  margin-top: 1rem;
+  font-size: 0.76rem;
+  margin-top: 0.8rem;
 }
 
 .success-message {
@@ -197,13 +193,12 @@ label {
     height: auto;
   }
 
-  /* icon size down on small screens */
   .social-icon {
-    font-size: 2.6rem;
+    font-size: 2.1rem;
   }
 
   .form-card .contact-form textarea,
   .form-card textarea {
-    min-height: 180px;
+    min-height: 144px;
   }
 }

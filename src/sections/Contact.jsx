@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "../styles/Contact.css";
 
-const Contact = () => {
+const Contact = ({ language }) => {
   const form = useRef();
   const [status, setStatus] = useState("");
 
@@ -27,68 +27,134 @@ const Contact = () => {
       );
   };
 
+  // Traducción dinámica
+  const texts = {
+    en: {
+      title: "Contact",
+      name: "Name",
+      email: "Email",
+      message: "Message",
+      placeholderName: "Your name",
+      placeholderEmail: "youremail@example.com",
+      placeholderMsg: "Write your message...",
+      send: "Send",
+      sending: "Sending...",
+      success: "✅ Message sent successfully!",
+      error: "❌ Something went wrong.",
+    },
+    es: {
+      title: "Contacto",
+      name: "Nombre",
+      email: "Correo electrónico",
+      message: "Mensaje",
+      placeholderName: "Tu nombre",
+      placeholderEmail: "tucorreo@ejemplo.com",
+      placeholderMsg: "Escribe tu mensaje...",
+      send: "Enviar",
+      sending: "Enviando...",
+      success: "✅ ¡Mensaje enviado con éxito!",
+      error: "❌ Ocurrió un error.",
+    },
+  };
+
+  const t = texts[language === "es" ? "es" : "en"];
+
   return (
     <section className="contact-section" id="contact">
       <h2 className="contact-title" data-aos="fade-up">
-        Contact
+        {t.title}
       </h2>
 
       <div className="contact-container">
+        {/* Redes sociales */}
         <div className="social-cards" data-aos="fade-right">
-          <div className="social-card">
+          <a
+            href="mailto:tomasrivarola451@gmail.com"
+            target="_blank"
+            className="social-card"
+            rel="noopener noreferrer"
+          >
             <FaEnvelope className="social-icon" />
             <h3>Email</h3>
-            <a href="mailto:tomasrivarolad451@gmail.com">tomasrivarola451@gmail.com</a>
-          </div>
+            <p>tomasrivarola451@gmail.com</p>
+          </a>
 
-          <div className="social-card">
+          <a
+            href="https://www.linkedin.com/in/tomás-rivarola"
+            target="_blank"
+            className="social-card"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin className="social-icon" />
             <h3>LinkedIn</h3>
-            <a href="www.linkedin.com/in/tomás-rivarola" target="_blank">
-              www.linkedin.com/in/tomás-rivarola
-            </a>
-          </div>
+            <p>www.linkedin.com/in/tomás-rivarola</p>
+          </a>
 
-          <div className="social-card">
+          <a
+            href="https://www.instagram.com/rivarolatomas_/"
+            target="_blank"
+            className="social-card"
+            rel="noopener noreferrer"
+          >
             <FaInstagram className="social-icon" />
             <h3>Instagram</h3>
-            <a href="https://www.instagram.com/rivarolatomas_/" target="_blank">
-              @rivarolatomas_
-            </a>
-          </div>
+            <p>@rivarolatomas_</p>
+          </a>
 
-          <div className="social-card">
+          <a
+            href="https://github.com/TomasRivarola451"
+            target="_blank"
+            className="social-card"
+            rel="noopener noreferrer"
+          >
             <FaGithub className="social-icon" />
             <h3>GitHub</h3>
-            <a href="https://github.com/TomasRivarola451" target="_blank">
-              https://github.com/TomasRivarola451
-            </a>
-          </div>
+            <p>github.com/TomasRivarola451</p>
+          </a>
         </div>
 
+        {/* Formulario */}
         <div className="form-card" data-aos="fade-left">
           <form ref={form} onSubmit={sendEmail} className="contact-form">
             <div className="input-group">
-              <label>Name</label>
-              <input type="text" name="user_name" placeholder="Your name" required />
+              <label>{t.name}</label>
+              <input
+                type="text"
+                name="user_name"
+                placeholder={t.placeholderName}
+                required
+              />
             </div>
 
             <div className="input-group">
-              <label>Email</label>
-              <input type="email" name="user_email" placeholder="youremail@example.com" required />
+              <label>{t.email}</label>
+              <input
+                type="email"
+                name="user_email"
+                placeholder={t.placeholderEmail}
+                required
+              />
             </div>
 
             <div className="input-group">
-              <label>Message</label>
-              <textarea name="message" placeholder="Write your message..." required></textarea>
+              <label>{t.message}</label>
+              <textarea
+                name="message"
+                placeholder={t.placeholderMsg}
+                required
+              ></textarea>
             </div>
 
             <button type="submit" className="send-btn">
-              {status === "sending" ? "Sending..." : "Send"}
+              {status === "sending" ? t.sending : t.send}
             </button>
 
-            {status === "success" && <p className="success-message">✅ Message sent successfully!</p>}
-            {status === "error" && <p className="error-message">❌ Something went wrong.</p>}
+            {status === "success" && (
+              <p className="success-message">{t.success}</p>
+            )}
+            {status === "error" && (
+              <p className="error-message">{t.error}</p>
+            )}
           </form>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from "/public/favicon.svg/Tomas.svg";
+import logo from "/public/favicon.svg/TomasTR.svg";
 
 function Navbar({ language, toggleLanguage }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ function Navbar({ language, toggleLanguage }) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
+      
         <div
           className="navbar-logo"
           onClick={() => handleScroll("hero")}
@@ -28,7 +28,7 @@ function Navbar({ language, toggleLanguage }) {
           <img src={logo} alt="Logo" className="logo" />
         </div>
 
-        {/* Links */}
+  
         <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
           <span onClick={() => handleScroll("hero")}>
             {language === "en" ? "Home" : "Inicio"}
@@ -47,15 +47,15 @@ function Navbar({ language, toggleLanguage }) {
           </span>
         </div>
 
-        {/* Derecha: idioma + menú */}
+
         <div className="navbar-right">
-          {/* Botón de idioma (ahora muestra el idioma al que vas a cambiar) */}
+
         <button className="lang-btn" onClick={toggleLanguage}>
           {language === "en" ? "ES / EN" : "EN / ES"}
         </button>
 
 
-          {/* Icono del menú responsive */}
+
           <div
             className="menu-icon"
             onClick={toggleMenu}

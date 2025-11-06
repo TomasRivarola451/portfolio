@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Fondo global fijo para toda la web */
 body {
   background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
@@ -16,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Fix para mobile: emula el background fijo --- */
+
 @supports (-webkit-touch-callout: none) {
   body {
     background-attachment: scroll;
@@ -36,3 +37,4 @@ body {
     pointer-events: none;
   }
 }
+

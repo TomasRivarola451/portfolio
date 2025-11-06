@@ -1,10 +1,9 @@
-/* === NAVBAR GENERAL === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 56px; 
   background: rgba(10, 10, 20, 0.2);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -17,7 +16,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* === ANIMACIONES === */
+/*ANIMACIONES */
 @keyframes fadeDown {
   0% { opacity: 0; transform: translateY(-15px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -31,17 +30,17 @@
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* === CONTENEDOR INTERNO === */
+
 .navbar-container {
   width: 90%;
-  max-width: 1300px;
+  max-width: 1040px; 
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   opacity: 1;
 }
 
-/* === LOGO === */
+
 .navbar-logo {
   display: flex;
   justify-content: flex-start;
@@ -52,7 +51,7 @@
   cursor: pointer;
 }
 .logo {
-  height: 45px;
+  height: 36px; 
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -60,32 +59,32 @@
 }
 .logo:hover { transform: scale(1.06); opacity: 0.9; }
 
-/* === LINKS CENTRADOS === */
+
 .navbar-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem; 
   opacity: 1;
 }
 
 .navbar-links span {
   color: #e5e5e5;
-  font-size: 1.05rem;
+  font-size: 0.84rem;
   font-weight: 500;
   position: relative;
   transition: color 0.3s ease;
   cursor: pointer;
 }
 
-/* EFECTO HOVER */
+
 .navbar-links span::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -3px;
   width: 0%;
-  height: 2px;
+  height: 1.6px;
   background-color: #4d64f4;
   transition: width 0.3s ease;
   border-radius: 2px;
@@ -93,11 +92,11 @@
 .navbar-links span:hover::after { width: 100%; }
 .navbar-links span:hover { color: #ffffff; }
 
-/* === ICONO HAMBURGUESA === */
+/* ICONO HAMBURGUESA  */
 .menu-icon {
   display: none;
   justify-content: flex-end;
-  font-size: 1.8rem;
+  font-size: 1.44rem; 
   color: white;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -112,15 +111,15 @@
 
   .navbar-links {
     position: absolute;
-    top: 70px;
+    top: 56px; 
     left: 0;
     right: 0;
     flex-direction: column;
     background: rgba(10, 10, 20, 0.85);
     backdrop-filter: blur(15px);
     text-align: center;
-    padding: 2rem 0;
-    gap: 1.5rem;
+    padding: 1.6rem 0; 
+    gap: 1.2rem; 
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     opacity: 0;
     pointer-events: none;
@@ -138,31 +137,32 @@
   .navbar-links span::after { display: none; }
 }
 
-/* === BOTÓN DE IDIOMA === */
+/* BOTÓN DE IDIOMA */
 .lang-btn {
   background: transparent;
   border: none;
   color: #e5e5e5;
-  font-size: 1.05rem;
+  font-size: 0.84rem; 
   font-weight: 500;
   position: relative;
   cursor: pointer;
   transition: color 0.3s ease;
-  margin-left: 1rem;
+  margin-left: 0.8rem; 
 }
 
 .lang-btn::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -3px; 
   width: 0%;
-  height: 2px;
+  height: 1.6px;
   background-color: #4d64f4;
   transition: width 0.3s ease;
   border-radius: 2px;
 }
-/* === CORRECCIÓN DE CURSOR === */
+
+
 .navbar-links a,
 .logo,
 .lang-btn {
@@ -172,14 +172,13 @@
 .lang-btn:hover::after { width: 100%; }
 .lang-btn:hover { color: #ffffff; }
 
-/* === CONTENEDOR DERECHO === */
+
 .navbar-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-/* === DESKTOP === */
 @media (min-width: 769px) {
   .navbar-container {
     grid-template-columns: 1fr 2fr 1fr;
@@ -192,12 +191,12 @@
   .lang-btn {
     width: 100%;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
   }
   .lang-btn::after { display: none; }
 }
 
-/* === ANIMACIONES DESKTOP === */
+
 @media (min-width: 769px) {
   .navbar-container {
     opacity: 0;

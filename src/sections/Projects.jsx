@@ -5,11 +5,67 @@ import { SiReact, SiTailwindcss, SiNextdotjs } from "react-icons/si";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Traducciones
+const translations = {
+  en: {
+    title: "Projects",
+    website: "Website",
+    github: "Github",
+    projects: [
+      {
+        name: "ImportNow",
+        description:
+          "E-commerce for electronic products with a modern design, smooth animations, and a dynamic catalog connected to an external spreadsheet.",
+      },
+      {
+        name: "RiffHouse",
+        description:
+          "Responsive guitar and accessories store with a dynamic product catalog and minimalist layout.",
+      },
+      {
+        name: "Bota de Oro",
+        description:
+          "Web store specialized in football boots, with a dark modern design, smooth animations, and professional layout.",
+      },
+      {
+        name: "Text Analyzer",
+        description:
+          "Advanced text analysis tool with sentiment analysis, readability metrics, and word frequency visualization.",
+      },
+    ],
+  },
+  es: {
+    title: "Proyectos",
+    website: "Sitio Web",
+    github: "Github",
+    projects: [
+      {
+        name: "ImportNow",
+        description:
+          "E-commerce de productos electrónicos con diseño moderno, animaciones fluidas y catálogo dinámico conectado a una hoja de cálculo externa.",
+      },
+      {
+        name: "RiffHouse",
+        description:
+          "Tienda de guitarras y accesorios responsive, con catálogo dinámico y diseño minimalista.",
+      },
+      {
+        name: "Bota de Oro",
+        description:
+          "Tienda web especializada en botines de fútbol, con diseño oscuro, moderno, animaciones suaves y estructura profesional.",
+      },
+      {
+        name: "Text Analyzer",
+        description:
+          "Herramienta avanzada de análisis de texto con análisis de sentimiento, métricas de legibilidad y visualización de la frecuencia de palabras.",
+      },
+    ],
+  },
+};
+
 const projects = [
   {
     name: "ImportNow",
-    description:
-      "E-commerce for electronic products with a modern design, smooth animations, and a dynamic catalog connected to an external spreadsheet.",
     tech: ["React", "Vite", "CSS"],
     images: [
       "/images/importDeskt.svg",
@@ -21,8 +77,6 @@ const projects = [
   },
   {
     name: "RiffHouse",
-    description:
-      "Responsive guitar and accessories store with a dynamic product catalog and minimalist layout.",
     tech: ["React", "Vite", "CSS"],
     images: [
       "/images/RiffDeskt.svg",
@@ -34,8 +88,6 @@ const projects = [
   },
   {
     name: "Bota de Oro",
-    description:
-      "Web store specialized in football boots, with a dark modern design, smooth animations, and professional layout.",
     tech: ["React", "Vite", "CSS"],
     images: [
       "/images/BotaDeskt.svg",
@@ -46,17 +98,15 @@ const projects = [
     github: "https://github.com/TomasRivarola451/Bota-de-Oro",
   },
   {
-    name: "Spotify Clone",
-    description:
-      "Functional clone of the Spotify Web interface, featuring dynamic playlists, interactive player, and design identical to the original app.",
+    name: "Text Analyzer",
     tech: ["React", "Vite", "TailwindCss"],
     images: [
-      "/projects/spotify-mobile.png",
-      "/projects/spotify-tablet.png",
-      "/projects/spotify-desktop.png",
+      "/images/TextDeskt.svg",
+      "/images/TextIpad.svg",
+      "/images/TextMovil.svg",
     ],
-    website: "https://spotifyclone.vercel.app",
-    github: "https://github.com/tomasrivarola/spotify-clone",
+    website: "https://text-analyzer-beryl.vercel.app/",
+    github: "https://github.com/TomasRivarola451/text-analyzer",
   },
 ];
 
@@ -80,7 +130,7 @@ const techIcons = {
   NextJs: <SiNextdotjs className="tech-icon next" />,
 };
 
-const Projects = () => {
+const Projects = ({ language }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -98,22 +148,32 @@ const Projects = () => {
     };
   }, []);
 
+  const langData = translations[language] || translations.en;
+
   return (
     <section className="projects-section" id="projects">
       <h2 className="projects-title" data-aos="fade-up">
-        Projects
+        {langData.title}
       </h2>
+
       <div className="projects-container">
         {projects.map((project, index) => (
-          <ProjectCard project={project} key={index} />
+          <ProjectCard
+            key={index}
+            project={project}
+            langData={langData.projects[index]}
+            websiteText={langData.website}
+            githubText={langData.github}
+          />
         ))}
       </div>
     </section>
   );
 };
 
-const ProjectCard = ({ project }) => {
-  const [mainImage, setMainImage] = useState(project.images[2]);
+const ProjectCard = ({ project, langData, websiteText, githubText }) => {
+
+  const [mainImage, setMainImage] = useState(project.images[0]);
 
   return (
     <div className="project-card" data-aos="fade-up" data-aos-delay="200">
@@ -134,7 +194,7 @@ const ProjectCard = ({ project }) => {
         </div>
       </div>
 
-      <h3 className="project-name">{project.name}</h3>
+      <h3 className="project-name">{langData.name}</h3>
       <div className="project-tech">
         {project.tech.map((t, i) => (
           <span key={i} className="tech-tag">
@@ -143,7 +203,7 @@ const ProjectCard = ({ project }) => {
           </span>
         ))}
       </div>
-      <p className="project-description">{project.description}</p>
+      <p className="project-description">{langData.description}</p>
 
       <div className="project-buttons">
         <a
@@ -152,7 +212,7 @@ const ProjectCard = ({ project }) => {
           rel="noopener noreferrer"
           className="btn btn-primary"
         >
-          <FaGlobe className="btn-icon" /> Website
+          <FaGlobe className="btn-icon" /> {websiteText}
         </a>
         <a
           href={project.github}
@@ -160,7 +220,7 @@ const ProjectCard = ({ project }) => {
           rel="noopener noreferrer"
           className="btn btn-outline"
         >
-          <FaGithub className="btn-icon" /> Github
+          <FaGithub className="btn-icon" /> {githubText}
         </a>
       </div>
     </div>
