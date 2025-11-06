@@ -8,7 +8,6 @@ import Contact from "./sections/Contact";
 import "./styles/globals.css";
 
 function App() {
-  // idioma por defecto: inglés
   const [language, setLanguage] = useState("en");
 
   const toggleLanguage = () => {
@@ -17,15 +16,8 @@ function App() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Fondo global */}
-      <div
-        className="fixed inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(120% 120% at 50% 10%, #000000 40%, #010133 100%)",
-          backgroundAttachment: "fixed",
-        }}
-      />
+      {/* Fondo global visible en todas las pantallas */}
+      <div className="fixed inset-0 -z-10 bg-gradient"></div>
 
       {/* Contenido principal */}
       <Navbar language={language} toggleLanguage={toggleLanguage} />

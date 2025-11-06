@@ -3,8 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* Fondo global fijo para toda la web */
+/* === Fondo global fijo para toda la web === */
 body {
   background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
   background-attachment: fixed;
@@ -17,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-
+/* Fondo alternativo cuando background-attachment no funciona (iOS/Android) */
 @supports (-webkit-touch-callout: none) {
   body {
     background-attachment: scroll;
@@ -38,3 +37,18 @@ body {
   }
 }
 
+/* === Fondo global del div .bg-gradient === */
+.bg-gradient {
+  background: radial-gradient(120% 120% at 50% 10%, #000000 40%, #010133 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .bg-gradient {
+    background-attachment: scroll;
+    position: fixed;
+  }
+}
