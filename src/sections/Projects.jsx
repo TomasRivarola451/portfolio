@@ -116,14 +116,14 @@ const techIcons = {
     <img
       src="https://raw.githubusercontent.com/vitejs/vite/main/docs/public/logo.svg"
       alt="Vite logo"
-      className="tech-icon vite-img"
+      className="tech-icon vite-icon"
     />
   ),
   CSS: (
     <img
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
       alt="CSS3 logo"
-      className="tech-icon css-img"
+      className="tech-icon css-icon"
     />
   ),
   TailwindCss: <SiTailwindcss className="tech-icon tailwind" />,
@@ -172,7 +172,6 @@ const Projects = ({ language }) => {
 };
 
 const ProjectCard = ({ project, langData, websiteText, githubText }) => {
-
   const [mainImage, setMainImage] = useState(project.images[0]);
 
   return (
