@@ -152,7 +152,7 @@ const Projects = ({ language }) => {
 
   return (
     <section className="projects-section" id="projects">
-      <h2 className="projects-title" data-aos="fade-up">
+      <h2 className="section-title" data-aos="fade-up">
         {langData.title}
       </h2>
 

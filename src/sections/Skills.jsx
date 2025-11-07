@@ -15,7 +15,7 @@ const skills = [
 const Skills = ({ language }) => {
   return (
     <section className="skills-section" id="skills">
-      <h2 className="skills-title">
+      <h2 className="section-title">
         {language === "es" ? "Habilidades" : "Skills"}
       </h2>
 

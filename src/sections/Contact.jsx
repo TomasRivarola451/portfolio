@@ -61,7 +61,7 @@ const Contact = ({ language }) => {
 
   return (
     <section className="contact-section" id="contact">
-      <h2 className="contact-title" data-aos="fade-up">
+      <h2 className="section-title" data-aos="fade-up">
         {t.title}
       </h2>
 
