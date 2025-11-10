@@ -43,7 +43,7 @@ const About = ({ language }) => {
 
   return (
     <section id="about" className="about-section" data-aos="fade-up">
-      <h2 className="about-title">{t.title}</h2>
+      <h2 className="section-title">{t.title}</h2>
 
       <div className="about-container" data-aos="fade-up" data-aos-delay="200">
         <div className="about-image" data-aos="fade-right" data-aos-delay="300">
