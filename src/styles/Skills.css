@@ -144,11 +144,11 @@
 
   .skills-track {
     gap: 48px;
-    animation-duration: 18s;
+    animation-duration: 12s;
   }
 
   .skills-track.reverse {
-    animation-duration: 18s;
+    animation-duration: 12s;
   }
 
   .skill-item {

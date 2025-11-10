@@ -117,7 +117,7 @@
   font-size: 1rem;
   color: #ccc;
   line-height: 1.6;
-  margin-bottom: 3rem; /* antes estaba en 2.2rem */
+  margin-bottom: 3rem;
 }
 
 
@@ -232,9 +232,20 @@
 }
 
 @media (max-width: 768px) {
+  .projects-section {
+    padding: 4rem 0;
+  }
+
+  .projects-container {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
   .project-card {
     max-width: 100%;
+    width: calc(100% - 2rem);
     padding: 1.6rem;
+    margin: 0 auto;
   }
 
   .project-images {
@@ -244,6 +255,7 @@
 
   .thumbnails {
     flex-direction: row;
+    justify-content: center;
   }
 
   .thumbnail {
@@ -251,12 +263,23 @@
     height: 42px;
   }
 
+  .main-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .main-image img {
     width: 260px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
+  .project-card {
+    width: calc(100% - 1rem);
+  }
+
   .main-image img {
     width: 230px;
   }
