@@ -55,9 +55,9 @@ const translations = {
           "Tienda web especializada en botines de fútbol, con diseño oscuro, moderno, animaciones suaves y estructura profesional.",
       },
       {
-        name: "Text Analyzer",
+        name: "MoodSync",
         description:
-          "Herramienta avanzada de análisis de texto con análisis de sentimiento, métricas de legibilidad y visualización de la frecuencia de palabras.",
+          "Proyecto personal que integra OpenAI para recomendar música basada en cómo te sentís, Cada estado tiene su propio diseño: colores, animaciones, audio ambiente. Todo cambia según lo que detecta la IA.",
       },
     ],
   },
@@ -98,15 +98,15 @@ const projects = [
     github: "https://github.com/TomasRivarola451/Bota-de-Oro",
   },
   {
-    name: "Text Analyzer",
-    tech: ["React", "Vite", "TailwindCss"],
+    name: "Mood Sync",
+    tech: ["React", "Vite", "CSS"],
     images: [
-      "/images/TextDeskt.svg",
-      "/images/TextIpad.svg",
-      "/images/TextMovil.svg",
+      "/images/MoodDeskt.svg",
+      "/images/MoodIpad.svg",
+      "/images/MoodPhone.svg",
     ],
-    website: "https://text-analyzer-beryl.vercel.app/",
-    github: "https://github.com/TomasRivarola451/text-analyzer",
+    website: "https://moodsync-app.vercel.app/",
+    github: "https://github.com/TomasRivarola451/moodsync",
   },
 ];
 
