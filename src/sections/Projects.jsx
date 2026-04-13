@@ -28,9 +28,9 @@ const translations = {
           "Web store specialized in football boots, with a dark modern design, smooth animations, and professional layout.",
       },
       {
-        name: "Text Analyzer",
+        name: "MoodSync",
         description:
-          "Advanced text analysis tool with sentiment analysis, readability metrics, and word frequency visualization.",
+          "A personal project that integrates OpenAI to recommend music based on how you feel. Each mood has its own design: colors, animations, ambient audio. Everything changes according to what the AI ​​detects.",
       },
     ],
   },
