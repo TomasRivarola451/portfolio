@@ -25,7 +25,7 @@ const Hero = ({ language }) => {
         <h1 className="hero-title">Tomás Rivarola</h1>
 
         <h2 className="hero-subtitle">
-          {isEnglish ? "Frontend Developer" : "Desarrollador Frontend"}
+          {isEnglish ? "Frontend Developer" : "Desarrollador Frontend "}
         </h2>
 
         <p className="hero-description">

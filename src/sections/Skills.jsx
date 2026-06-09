@@ -31,18 +31,6 @@ const Skills = ({ language }) => {
             ))}
           </div>
         </div>
-
-        {/* Carrusel inferior (reverso) */}
-        <div className="skills-carousel">
-          <div className="skills-track reverse">
-            {[...skills, ...skills].map((skill, index) => (
-              <div className="skill-item" key={`bottom-${index}`}>
-                <img src={skill.icon} alt={skill.name} />
-                <p>{skill.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

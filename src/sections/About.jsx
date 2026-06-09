@@ -25,16 +25,16 @@ const About = ({ language }) => {
   const content = {
     en: {
       title: "About Me",
-      p1: "I’m Tomás Rivarola, I’m 22 years old, a frontend developer living in Mendoza, Argentina. I enjoy combining design and technology to build clean, modern, and engaging web experiences.",
-      p2: "My journey started in graphic design, where I discovered my passion for visual composition. Over time, I found in web development a creative and challenging path that pushes me to think, design, and build every day.",
-      p3: "Since 2022, I've been learning and growing through real projects always focused on detail, usability, and delivering intuitive digital interfaces.",
+      p1: "I'm Tomás Rivarola, a freelance frontend developer and web designer based in Mendoza, Argentina. I specialize in building clean, modern, and functional interfaces where design and code work together.",
+      p2: "My background in graphic design gave me a strong visual foundation that I now apply directly to every web project — from layout and typography to user experience.",
+      p3: "I work independently with real clients, taking projects from brief to launch. I focus on detail, usability, and delivering results that communicate clearly and look great.",
       label: "Available to work",
     },
     es: {
       title: "Sobre mí",
-      p1: "Soy Tomás Rivarola, tengo 22 años, soy desarrollador frontend y vivo en Mendoza, Argentina. Disfruto combinar diseño y tecnología para crear experiencias web limpias, modernas y atractivas.",
-      p2: "Mi camino comenzó en el diseño gráfico, donde descubrí mi pasión por la composición visual. Con el tiempo, encontré en el desarrollo web un camino creativo y desafiante que me impulsa a pensar, diseñar y construir cada día.",
-      p3: "Desde 2022, he estado aprendiendo y creciendo a través de proyectos reales, siempre enfocado en el detalle, la usabilidad y en ofrecer interfaces digitales intuitivas.",
+      p1: "Soy Tomás Rivarola, desarrollador frontend y diseñador web freelance con base en Mendoza, Argentina. Me especializo en construir interfaces limpias, modernas y funcionales, donde el diseño y el código trabajan juntos.",
+      p2: "Mi background en diseño gráfico me dio una base visual sólida que hoy aplico directamente en cada proyecto web: desde la composición y la tipografía hasta la experiencia de usuario.",
+      p3: "Trabajo de forma independiente con clientes reales, llevando proyectos desde el brief hasta la publicación. Me enfoco en el detalle, la usabilidad y en entregar resultados que comuniquen bien y se vean mejor.",
       label: "Disponible para trabajar",
     },
   };

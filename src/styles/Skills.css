@@ -19,8 +19,7 @@
 .skills-carousel {
   position: relative;
   overflow: hidden;
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   padding: 1rem;
 }
 
@@ -53,7 +52,7 @@
 .skills-track {
   display: flex;
   gap: 64px;
-  animation: scroll-left 25s linear infinite;
+  animation: scroll-left 18s linear infinite;
   will-change: transform;
   z-index: 2;
 }
