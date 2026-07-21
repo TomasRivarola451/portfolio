@@ -40,7 +40,7 @@ const Hero = ({ language }) => {
           </button>
 
           <a
-            href="https://drive.google.com/file/d/1nJDFfdojj2Nn2JnIqIec0j9ETY6L5Fu_/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1DNTftyCltN9cn3pqxhNnxX7X__6k45d4/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-outline"
