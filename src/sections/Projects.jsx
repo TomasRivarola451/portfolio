@@ -13,24 +13,24 @@ const translations = {
     github: "Github",
     projects: [
       {
-        name: "ImportNow",
+        name: "Crux Studio",
         description:
-          "E-commerce for electronic products with a modern design, smooth animations, and a dynamic catalog connected to an external spreadsheet.",
-      },
-      {
-        name: "RiffHouse",
-        description:
-          "Responsive guitar and accessories store with a dynamic product catalog and minimalist layout.",
-      },
-      {
-        name: "Bota de Oro",
-        description:
-          "Web store specialized in football boots, with a dark modern design, smooth animations, and professional layout.",
+          "Website developed for a tattoo studio, featuring a custom visual identity, responsive design, interactive gallery, and an immersive experience focused on the artist's brand.",
       },
       {
         name: "MoodSync",
         description:
           "A personal project that integrates OpenAI to recommend music based on how you feel. Each mood has its own design: colors, animations, ambient audio. Everything changes according to what the AI ​​detects.",
+      },
+      {
+        name: "Testa Sport",
+        description:
+          "Commercial website built with Framer for a sportswear brand. Features a category-based product catalog, responsive design, and a simple, intuitive browsing experience.",
+      },
+      {
+        name: "Import Now",
+        description:
+          "E-commerce for electronic products with a modern design, smooth animations, and a dynamic catalog connected to an external spreadsheet.",
       },
     ],
   },
@@ -40,24 +40,24 @@ const translations = {
     github: "Github",
     projects: [
       {
-        name: "ImportNow",
+        name: "Crux Studio",
         description:
-          "E-commerce de productos electrónicos con diseño moderno, animaciones fluidas y catálogo dinámico conectado a una hoja de cálculo externa.",
-      },
-      {
-        name: "RiffHouse",
-        description:
-          "Tienda de guitarras y accesorios responsive, con catálogo dinámico y diseño minimalista.",
-      },
-      {
-        name: "Bota de Oro",
-        description:
-          "Tienda web especializada en botines de fútbol, con diseño oscuro, moderno, animaciones suaves y estructura profesional.",
+          "Sitio web desarrollado para un estudio de tatuajes, con una estética personalizada, diseño responsive, galería interactiva y una experiencia visual enfocada en la identidad del artista.",
       },
       {
         name: "MoodSync",
         description:
           "Proyecto personal que integra OpenAI para recomendar música basada en cómo te sentís, Cada estado tiene su propio diseño: colores, animaciones, audio ambiente. Todo cambia según lo que detecta la IA.",
+      },
+      {
+        name: "Testa Sport",
+        description:
+          "Sitio web comercial desarrollado en Framer para una marca de indumentaria deportiva. Incluye un catálogo organizado por categorías, diseño responsive y una experiencia de navegación simple e intuitiva.",
+      },
+      {
+        name: "Import Now",
+        description:
+          "E-commerce de productos electrónicos con diseño moderno, animaciones fluidas y catálogo dinámico conectado a una hoja de cálculo externa.",
       },
     ],
   },
@@ -65,40 +65,14 @@ const translations = {
 
 const projects = [
   {
-    name: "ImportNow",
-    tech: ["React", "Vite", "CSS"],
-    images: [
-      "/images/importDeskt.svg",
-      "/images/ImportIpad.svg",
-      "/images/ImportMovil.svg",
-    ],
-    website: "https://import-now.vercel.app/",
-    github: "https://github.com/TomasRivarola451/ImportNow",
+    name: "Crux Studio",
+    tech: ["React", "TypeScript", "Vite", "CSS Modules"],
+    images: ["/images/CruxDeskt.png", "/images/CruxIpad.png", "/images/CruxMovil.png"],
+    website: "https://crux-studio.com.ar/",
+    github: "https://github.com/TomasRivarola451/crux-studio",
   },
   {
-    name: "RiffHouse",
-    tech: ["React", "Vite", "CSS"],
-    images: [
-      "/images/RiffDeskt.svg",
-      "/images/RiffIpad.svg",
-      "/images/RiffMovil.svg",
-    ],
-    website: "https://riff-house.vercel.app/",
-    github: "https://github.com/TomasRivarola451/RiffHouse",
-  },
-  {
-    name: "Bota de Oro",
-    tech: ["React", "Vite", "CSS"],
-    images: [
-      "/images/BotaDeskt.svg",
-      "/images/BotaIpad.svg",
-      "/images/BotaMovil.svg",
-    ],
-    website: "https://bota-de-oro.vercel.app/",
-    github: "https://github.com/TomasRivarola451/Bota-de-Oro",
-  },
-  {
-    name: "Mood Sync",
+    name: "MoodSync",
     tech: ["React", "Vite", "CSS"],
     images: [
       "/images/MoodDeskt.svg",
@@ -107,6 +81,23 @@ const projects = [
     ],
     website: "https://moodsync-app.vercel.app/",
     github: "https://github.com/TomasRivarola451/moodsync",
+  },
+  {
+    name: "Testa Sport",
+    tech: ["Framer", "Responsive Design", "UI/UX"],
+    images: ["/images/TestaDeskt.png", "/images/TestaIpad.png", "/images/TestaMovil.png"],
+    website: "https://testasport.ar/",
+  },
+  {
+    name: "Import Now",
+    tech: ["React", "Vite", "CSS"],
+    images: [
+      "/images/importDeskt.svg",
+      "/images/ImportIpad.svg",
+      "/images/ImportMovil.svg",
+    ],
+    website: "https://import-now.vercel.app/",
+    github: "https://github.com/TomasRivarola451/ImportNow",
   },
 ];
 
@@ -213,6 +204,7 @@ const ProjectCard = ({ project, langData, websiteText, githubText }) => {
         >
           <FaGlobe className="btn-icon" /> {websiteText}
         </a>
+        {project.github && (
         <a
           href={project.github}
           target="_blank"
@@ -221,6 +213,7 @@ const ProjectCard = ({ project, langData, websiteText, githubText }) => {
         >
           <FaGithub className="btn-icon" /> {githubText}
         </a>
+        )}
       </div>
     </div>
   );
