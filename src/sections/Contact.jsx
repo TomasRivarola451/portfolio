@@ -1,17 +1,11 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import "../styles/Contact.css";
 
 const Contact = ({ language }) => {
   const form = useRef();
   const [status, setStatus] = useState("");
-
-  useEffect(() => {
-    AOS.init({ duration: 900, once: false });
-  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();

@@ -7,7 +7,7 @@
 
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
   justify-items: center;
   padding: 1.6rem 3.2rem;
@@ -23,6 +23,7 @@
   border-radius: 16px;
   padding: 2rem;
   max-width: 480px;
+  min-width: 0;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
   box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
 }
@@ -169,11 +170,12 @@
 /* ---------- BOTONES ---------- */
 .project-buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.8rem;
 }
 
-.btn {
+.projects-section .btn {
   padding: 0.7rem 1.4rem;
   font-size: 0.85rem;
   border-radius: 24px;
@@ -187,26 +189,26 @@
     background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-.btn-primary {
+.projects-section .btn-primary {
   background-color: #4d64f4;
   color: #fff;
   border: none;
   box-shadow: 0 0 10px rgba(77, 100, 244, 0.3);
 }
 
-.btn-primary:hover {
+.projects-section .btn-primary:hover {
   background-color: #5f74ff;
   box-shadow: 0 0 20px rgba(77, 100, 244, 0.6);
   transform: translateY(-3px);
 }
 
-.btn-outline {
+.projects-section .btn-outline {
   background: transparent;
   border: 1.2px solid rgba(255, 255, 255, 0.4);
   color: #fff;
 }
 
-.btn-outline:hover {
+.projects-section .btn-outline:hover {
   border-color: #4d64f4;
   color: #4d64f4;
   box-shadow: 0 0 8px rgba(77, 100, 244, 0.5);
@@ -227,7 +229,7 @@
 
 @media (max-width: 900px) {
   .projects-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 0.8rem 1.6rem;
   }
   .main-image {

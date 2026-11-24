@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Contact from "./sections/Contact";
-import "./styles/globals.css";
+import "aos/dist/aos.css";
+import { initializeAnimations, refreshAnimations } from "./lib/animations";
 
 function App() {
   const [language, setLanguage] = useState("en");
+
+  useEffect(() => { initializeAnimations(); }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    refreshAnimations();
+  }, [language]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "es" : "en"));

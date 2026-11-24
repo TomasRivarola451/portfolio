@@ -3,6 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+body {
+  background-color: #05050a;
+}
+
+
+  ::selection {
+    background-color: #4d64f4;
+    color: white;
+  }
+}
+
+
 body {
   background: linear-gradient(to top, #0a0a0f 0%, #111123 30%, #1a1a33 70%, #20204a 100%);
   background-attachment: fixed;
@@ -66,4 +83,20 @@ body {
   .section-title:hover {
     transform: translateY(-1px) scale(1.005);
   }
+}
+
+/* A stable, readable alternative to decorative motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero .hero-content,
+  .navbar.navbar,
+  .section-title,
+  .skills-track,
+  .about-image::before { animation: none; }
+  html body [data-aos][data-aos][data-aos] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .navbar .navbar-links { transition: none; }
 }

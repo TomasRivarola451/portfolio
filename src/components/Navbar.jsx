@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from "/public/favicon.svg/TomasTR.svg";
 
 function Navbar({ language, toggleLanguage }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +10,7 @@ function Navbar({ language, toggleLanguage }) {
   const handleScroll = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
       setMenuOpen(false);
     }
   };
@@ -25,7 +24,7 @@ function Navbar({ language, toggleLanguage }) {
           onClick={() => handleScroll("hero")}
           style={{ cursor: "pointer" }}
         >
-          <img src={logo} alt="Logo" className="logo" />
+          <img src="/favicon.svg/TomasTR.svg" alt="Logo" className="logo" />
         </div>
 
   

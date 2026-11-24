@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./../styles/Projects.css";
 import { FaGlobe, FaGithub } from "react-icons/fa";
 import { SiReact, SiTailwindcss, SiNextdotjs } from "react-icons/si";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 // Traducciones
 const translations = {
@@ -122,23 +120,6 @@ const techIcons = {
 };
 
 const Projects = ({ language }) => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      easing: "ease-in-out",
-      offset: 100,
-    });
-
-    window.addEventListener("load", AOS.refresh);
-    window.addEventListener("scroll", AOS.refresh);
-
-    return () => {
-      window.removeEventListener("load", AOS.refresh);
-      window.removeEventListener("scroll", AOS.refresh);
-    };
-  }, []);
-
   const langData = translations[language] || translations.en;
 
   return (

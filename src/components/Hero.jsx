@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Hero.css";
 import Orb from "../components/Orb";
 import { FaGithub, FaLinkedinIn, FaInstagram, FaEnvelope } from "react-icons/fa";
@@ -9,7 +8,7 @@ const Hero = ({ language }) => {
   const handleScrollToContact = () => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+      contactSection.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   };
 

@@ -1,27 +1,6 @@
-import React, { useEffect } from "react";
 import "../styles/About.css";
-import profileImg from "/public/images/perfil.png";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const About = ({ language }) => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      easing: "ease-in-out",
-      offset: 100,
-    });
-
-    window.addEventListener("load", AOS.refresh);
-    window.addEventListener("scroll", AOS.refresh);
-
-    return () => {
-      window.removeEventListener("load", AOS.refresh);
-      window.removeEventListener("scroll", AOS.refresh);
-    };
-  }, []);
-
   const content = {
     en: {
       title: "About Me",
@@ -47,7 +26,7 @@ const About = ({ language }) => {
 
       <div className="about-container" data-aos="fade-up" data-aos-delay="200">
         <div className="about-image" data-aos="fade-right" data-aos-delay="300">
-          <img src={profileImg} alt="Tomás Rivarola" />
+          <img src="/images/perfil.png" alt="Tomás Rivarola" />
         </div>
 
         <div className="about-text" data-aos="fade-left" data-aos-delay="400">

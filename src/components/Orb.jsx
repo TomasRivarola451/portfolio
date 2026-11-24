@@ -167,7 +167,13 @@ export default function Orb({ hue = 0, hoverIntensity = 0.2, rotateOnHover = tru
     const container = ctnDom.current;
     if (!container) return;
 
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+    let renderer;
+    try {
+      renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+    } catch {
+      // Decorative WebGL must not prevent the content from mounting.
+      return;
+    }
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     container.appendChild(gl.canvas);
@@ -192,19 +198,21 @@ export default function Orb({ hue = 0, hoverIntensity = 0.2, rotateOnHover = tru
 
     function resize() {
       if (!container) return;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const width = container.clientWidth;
       const height = container.clientHeight;
       renderer.setSize(width * dpr, height * dpr);
       gl.canvas.style.width = width + 'px';
       gl.canvas.style.height = height + 'px';
       program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
+      renderer.render({ scene: mesh });
     }
     window.addEventListener('resize', resize);
     resize();
 
     let targetHover = 0;
-    let lastTime = 0;
+    let lastTime = null;
+    let elapsed = 0;
     let currentRot = 0;
     const rotationSpeed = 0.3;
 
@@ -234,33 +242,58 @@ export default function Orb({ hue = 0, hoverIntensity = 0.2, rotateOnHover = tru
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
 
-    let rafId;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let inViewport = true;
+    let rafId = null;
+
     const update = t => {
-      rafId = requestAnimationFrame(update);
-      const dt = (t - lastTime) * 0.001;
+      rafId = null;
+      const dt = lastTime === null ? 0 : Math.min((t - lastTime) * 0.001, 0.1);
       lastTime = t;
-      program.uniforms.iTime.value = t * 0.001;
+      elapsed += dt;
+      program.uniforms.iTime.value = elapsed;
       program.uniforms.hue.value = hue;
       program.uniforms.hoverIntensity.value = hoverIntensity;
 
       const effectiveHover = forceHoverState ? 1 : targetHover;
       program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.1;
-
-      if (rotateOnHover && effectiveHover > 0.5) {
-        currentRot += dt * rotationSpeed;
-      }
+      if (rotateOnHover && effectiveHover > 0.5) currentRot += dt * rotationSpeed;
       program.uniforms.rot.value = currentRot;
-
       renderer.render({ scene: mesh });
+      if (inViewport && !document.hidden && !reducedMotion.matches) {
+        rafId = requestAnimationFrame(update);
+      }
     };
-    rafId = requestAnimationFrame(update);
+
+    const syncAnimation = () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
+      lastTime = null;
+      if (reducedMotion.matches) {
+        program.uniforms.hover.value = 0;
+        renderer.render({ scene: mesh });
+      } else if (inViewport && !document.hidden) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      inViewport = entry.isIntersecting;
+      syncAnimation();
+    });
+    observer.observe(container);
+    document.addEventListener('visibilitychange', syncAnimation);
+    reducedMotion.addEventListener('change', syncAnimation);
+    syncAnimation();
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', syncAnimation);
+      reducedMotion.removeEventListener('change', syncAnimation);
       window.removeEventListener('resize', resize);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
-      container.removeChild(gl.canvas);
+      if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
