@@ -48,3 +48,16 @@
 @media (prefers-reduced-motion: reduce) {
   .navbar, .navbar-links a { transition: none; }
 }
+
+/* A local scrim preserves the original background below the navigation band. */
+.navbar { isolation: isolate; }
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: calc(100% + 110px);
+  background: linear-gradient(180deg, rgba(8,11,16,0.92) 0%, rgba(8,11,16,0.70) 35%, rgba(8,11,16,0.28) 70%, rgba(8,11,16,0) 100%);
+  pointer-events: none;
+}
+.navbar.navbar-scrolled::before { opacity: 0; }

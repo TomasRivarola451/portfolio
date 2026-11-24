@@ -23,9 +23,9 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden portfolio-shell">
       {/* Fondo global visible en todas las pantallas */}
-      <div className="fixed inset-0 -z-10 bg-gradient"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient"></div>
 
       {/* Contenido principal */}
       <Navbar language={language} toggleLanguage={toggleLanguage} />

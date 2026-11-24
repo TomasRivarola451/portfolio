@@ -17,10 +17,22 @@ function Navbar({ language, toggleLanguage }) {
   const isEnglish = language === "en";
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+    const navbar = document.querySelector(".navbar");
+    let observer;
+    const observeHero = () => {
+      observer?.disconnect();
+      const navHeight = (navbar?.offsetHeight || 0) + 1;
+      observer = new IntersectionObserver(([entry]) => {
+        setScrolled(!entry.isIntersecting && entry.boundingClientRect.bottom <= navHeight);
+      }, { rootMargin: `-${navHeight}px 0px 0px 0px` });
+      observer.observe(hero);
+    };
+    const resizeObserver = new ResizeObserver(observeHero);
+    if (navbar) resizeObserver.observe(navbar);
+    observeHero();
+    return () => { observer?.disconnect(); resizeObserver.disconnect(); };
   }, []);
 
   const navigate = (event, sectionId) => {

@@ -1,7 +1,7 @@
 .contact-section {
   padding: 4rem 1.6rem;
   background: transparent;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .contact-container {
@@ -29,21 +29,21 @@
   padding: 1.6rem;
   background: transparent;
   backdrop-filter: blur(18px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.1);
   transition: all 0.3s ease;
   height: 128px;
 }
 
 .social-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 32px rgba(77, 100, 244, 0.25);
+  box-shadow: 0 0 32px rgba(var(--color-accent-rgb), 0.25);
 }
 
 
 .social-icon {
   font-size: 3rem;
-  color: #4d64f4;
+  color: var(--color-accent-light);
   margin-bottom: 0.6rem;
   display: inline-flex;
   align-items: center;
@@ -54,18 +54,18 @@
 
 .social-card h3 {
   margin-bottom: 0.3rem;
-  font-size: 1rem;
+  font-size: 18px;
 }
 
 .social-card a {
-  color: #bbb;
-  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+  font-size: 14px;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .social-card a:hover {
-  color: #4d64f4;
+  color: var(--color-accent-light);
 }
 
 
@@ -74,14 +74,14 @@
   padding: 2.4rem;
   background: transparent;
   backdrop-filter: blur(18px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.1);
   transition: all 0.3s ease;
 }
 
 .form-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 32px rgba(77, 100, 244, 0.25);
+  box-shadow: 0 0 32px rgba(var(--color-accent-rgb), 0.25);
 }
 
 /* --- FORM --- */
@@ -98,7 +98,7 @@
 }
 
 label {
-  color: #fff;
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -108,11 +108,11 @@ label {
 .form-card textarea {
   width: 100%;
   padding: 1.28rem 0.96rem;
-  font-size: 0.86rem;
+  font-size: 16px;
   border-radius: 11px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(var(--color-steel-rgb), 0.35);
   background: transparent;
-  color: #fff;
+  color: var(--color-text);
   outline: none;
   transition: all 0.3s ease;
   line-height: 1.4;
@@ -132,25 +132,25 @@ label {
 .form-card .contact-form textarea:focus,
 .form-card input:focus,
 .form-card textarea:focus {
-  border-color: #4d64f4;
-  box-shadow: 0 0 10px rgba(77, 100, 244, 0.4);
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.4);
 }
 
 /* BUTTON */
 .send-btn {
-  background-color: #4d64f4;
-  color: #fff;
+  background-color: var(--color-accent-light);
+  color: var(--color-text);
   border: none;
   padding: 0.8rem 1.6rem;
-  border-radius: 24px;
-  font-size: 0.8rem;
+  border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .send-btn:hover {
-  background-color: #5f74ff;
+  background-color: var(--color-accent-bright);
   transform: translateY(-2px);
 }
 
@@ -158,7 +158,7 @@ label {
 .success-message,
 .error-message {
   text-align: center;
-  font-size: 0.76rem;
+  font-size: 14px;
   margin-top: 0.8rem;
 }
 
@@ -193,3 +193,9 @@ label {
     min-height: 144px;
   }
 }
+
+.social-card, .form-card { background: rgba(16,25,35,0.48); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.social-card:hover, .form-card:hover { box-shadow: 0 8px 24px rgba(var(--color-accent-rgb),0.12); }
+.social-card p { max-width: 100%; overflow-wrap: anywhere; color: var(--color-text-secondary); font-size: 15px; line-height: 1.5; }
+.contact-form label { font-size: 16px; }
+.send-btn { color: var(--color-bg); min-height: 48px; }

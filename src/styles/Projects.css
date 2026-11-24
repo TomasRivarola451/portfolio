@@ -15,21 +15,21 @@
   margin: 0 auto;
 }
 
-/* ---------- GLASS CARD ---------- */
+/* ---------- PROJECT CARDS ---------- */
 .project-card {
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 2rem;
   max-width: 480px;
   min-width: 0;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 0 20px rgba(77, 100, 244, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .project-card:hover {
-  box-shadow: 0 0 25px rgba(77, 100, 244, 0.25);
+  box-shadow: 0 8px 24px rgba(var(--color-accent-rgb), 0.12);
   transform: translateY(-4px);
 }
 
@@ -61,7 +61,7 @@
 .thumbnail:hover,
 .active-thumb {
   opacity: 1;
-  box-shadow: 0 0 8px rgba(77, 100, 244, 0.6);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.6);
   transform: scale(1.05);
 }
 
@@ -90,10 +90,10 @@
 
 /* ---------- TEXTO ---------- */
 .project-name {
-  font-size: 1.3rem;
+  font-size: 22px;
   font-weight: 600;
   margin: 0.8rem 0 0.5rem;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .project-tech {
@@ -109,27 +109,27 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(77, 100, 244, 0.08);
-  border: 1px solid rgba(77, 100, 244, 0.25);
+  background: rgba(var(--color-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.25);
   border-radius: 10px;
   padding: 0.35rem 0.8rem;
-  font-size: 0.72rem;
-  color: #fff;
+  font-size: 12px;
+  color: var(--color-text);
   transition: all 0.25s ease;
 }
 .project-description {
-  font-size: 1rem;
-  color: #ccc;
-  line-height: 1.6;
+  font-size: clamp(16px, 1.25vw, 18px);
+  color: var(--color-text-secondary);
+  line-height: 1.65;
   margin-bottom: 3rem;
 }
 
 
 .tech-tag:hover {
-  background: rgba(77, 100, 244, 0.15);
-  border-color: rgba(77, 100, 244, 0.4);
+  background: rgba(var(--color-accent-rgb), 0.15);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(77, 100, 244, 0.3);
+  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.3);
 }
 
 /* ---------- ICONOS ---------- */
@@ -143,7 +143,7 @@
   width: 16px;
   height: 16px;
   object-fit: contain;
-  filter: drop-shadow(0 0 2px #a882ff);
+  filter: none;
   transform: scale(0.95);
 }
 
@@ -151,7 +151,7 @@
   width: 16px;
   height: 16px;
   object-fit: contain;
-  filter: drop-shadow(0 0 2px #4d64f4);
+  filter: drop-shadow(0 0 2px var(--color-accent-light));
   transform: scale(0.95);
 }
 
@@ -177,8 +177,8 @@
 
 .projects-section .btn {
   padding: 0.7rem 1.4rem;
-  font-size: 0.85rem;
-  border-radius: 24px;
+  font-size: 14px;
+  border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
@@ -190,28 +190,28 @@
 }
 
 .projects-section .btn-primary {
-  background-color: #4d64f4;
-  color: #fff;
+  background-color: var(--color-accent-light);
+  color: var(--color-text);
   border: none;
-  box-shadow: 0 0 10px rgba(77, 100, 244, 0.3);
+  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .projects-section .btn-primary:hover {
-  background-color: #5f74ff;
-  box-shadow: 0 0 20px rgba(77, 100, 244, 0.6);
+  background-color: var(--color-accent-bright);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.6);
   transform: translateY(-3px);
 }
 
 .projects-section .btn-outline {
   background: transparent;
-  border: 1.2px solid rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border: 1.2px solid rgba(var(--color-steel-rgb), 0.45);
+  color: var(--color-text);
 }
 
 .projects-section .btn-outline:hover {
-  border-color: #4d64f4;
-  color: #4d64f4;
-  box-shadow: 0 0 8px rgba(77, 100, 244, 0.5);
+  border-color: var(--color-accent-light);
+  color: var(--color-accent-light);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.5);
   transform: translateY(-3px);
 }
 
@@ -291,3 +291,7 @@
     height: 36px;
   }
 }
+.project-card { background: rgba(16,25,35,0.48); }
+.projects-section .btn-primary { color: var(--color-bg); box-shadow: none; }
+.projects-section .btn-primary:hover { box-shadow: none; }
+.projects-section .btn-outline:hover { box-shadow: none; }
