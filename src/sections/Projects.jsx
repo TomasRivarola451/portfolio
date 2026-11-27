@@ -136,7 +136,7 @@ const Projects = ({ language }) => {
   return (
     <section className="projects-section" id="projects" aria-labelledby="projects-heading">
       <div className="projects-container">
-        <header className="projects-header">
+        <header className="projects-header" data-reveal="up">
           <h2 id="projects-heading">{langData.title}<span>.</span></h2>
           <p>{langData.intro}</p>
         </header>
@@ -176,11 +176,11 @@ const ProjectShowcase = ({ project, index, copy }) => {
 
   return (
     <article className={`project-row${index % 2 ? " project-row-reversed" : ""}`} aria-labelledby={headingId}>
-      <header className="project-heading">
+      <header className="project-heading" data-reveal="up">
         <p className="project-number">{String(index + 1).padStart(2, "0")} /</p>
         <h3 id={headingId}>{text.name}</h3>
       </header>
-      <figure className="project-visual">
+      <figure className="project-visual" data-reveal={index % 2 ? "left" : "right"} data-reveal-delay="60">
         <div className="project-preview" id={previewId} aria-busy={pending}>
           <img src={project.images[displayed]} alt={`${project.name} — ${copy.devices[displayed]}`} loading="lazy" decoding="async" />
         </div>
@@ -196,7 +196,7 @@ const ProjectShowcase = ({ project, index, copy }) => {
           <span className="sr-only" role="status">{error ? copy.error : pending ? copy.loading : ""}</span>
         </figcaption>
       </figure>
-      <div className="project-details">
+      <div className="project-details" data-reveal="up" data-reveal-delay="80">
         <p className="project-description">{text.description}</p>
         <ul className="project-tech" aria-label={project.name + " — " + (copy === translations.es ? "Tecnologías" : "Technologies")}>
           {project.tech.map(tech => (

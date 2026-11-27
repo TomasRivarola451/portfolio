@@ -441,6 +441,7 @@ const GradientASCII = ({
   scrambleRadius = 0.1,
   clickEffect = 'wave',
   intro = true,
+  introOffset = 0,
   lightMode = false,
   fontFamily = DEFAULT_FONT,
   dpr,
@@ -473,6 +474,7 @@ const GradientASCII = ({
     scrambleRadius: clamp(scrambleRadius, 0.02, 0.4),
     clickEffect: CLICK_EFFECTS[clickEffect] ?? 1,
     intro,
+    introOffset: clamp(introOffset, 0, INTRO_SECONDS),
     lightMode,
     fontFamily: fontFamily || DEFAULT_FONT,
     dpr
@@ -540,7 +542,7 @@ const GradientASCII = ({
     let paletteKey = '';
     let time = 0;
     let glyphTime = 0;
-    let introClock = settingsRef.current.intro && !reduce ? 0 : 1;
+    let introClock = settingsRef.current.intro && !reduce ? settingsRef.current.introOffset / INTRO_SECONDS : 1;
     let frameSeed = 0;
     let grainClock = 0;
     let raf = 0;

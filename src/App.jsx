@@ -5,13 +5,13 @@ import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Contact from "./sections/Contact";
-import "aos/dist/aos.css";
+import Footer from "./components/Footer";
 import { initializeAnimations, refreshAnimations } from "./lib/animations";
 
 function App() {
   const [language, setLanguage] = useState("en");
 
-  useEffect(() => { initializeAnimations(); }, []);
+  useEffect(() => initializeAnimations(), []);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -34,6 +34,7 @@ function App() {
       <Projects language={language} />
       <Skills language={language} />
       <Contact language={language} />
+      <Footer language={language} />
     </div>
   );
 }

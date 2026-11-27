@@ -23,8 +23,8 @@ const About = ({ language }) => {
   return (
     <section id="about" className="about-section" aria-labelledby="about-heading">
       <div className="about-layout">
-        <h2 className="about-title" id="about-heading">{t.title}<span>.</span></h2>
-        <figure className="about-portrait">
+        <h2 className="about-title" data-reveal="up" id="about-heading">{t.title}<span>.</span></h2>
+        <figure className="about-portrait" data-reveal="left">
           <svg className="about-ascii" viewBox="0 0 700 760" aria-hidden="true" focusable="false">
             <defs>
               <pattern id="about-ascii-pattern" width="116" height="28" patternUnits="userSpaceOnUse">
@@ -48,9 +48,9 @@ const About = ({ language }) => {
           <svg className="about-frame-outline" viewBox="0 0 600 650" aria-hidden="true" focusable="false"><path d={FRAME} fill="none" stroke="#a5d8ff" strokeWidth="1.2" vectorEffect="non-scaling-stroke"/></svg>
         </figure>
         <div className="about-copy">
-          <p>{t.p1}</p>
-          <p>{t.p2}</p>
-          <p>{t.prefix}<a href="https://tarostudio.framer.website/" target="_blank" rel="noopener noreferrer">Taro Studio <span aria-hidden="true">↗</span></a>{t.suffix}</p>
+          <p data-reveal="up" data-reveal-delay="60">{t.p1}</p>
+          <p data-reveal="up" data-reveal-delay="120">{t.p2}</p>
+          <p data-reveal="up" data-reveal-delay="180">{t.prefix}<a href="https://tarostudio.framer.website/" target="_blank" rel="noopener noreferrer">Taro Studio <span aria-hidden="true">↗</span></a>{t.suffix}</p>
         </div>
       </div>
     </section>

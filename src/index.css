@@ -51,7 +51,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero .hero-content, .navbar.navbar, .section-title, .skills-track { animation: none; }
-  html body [data-aos][data-aos][data-aos] { opacity: 1; transform: none; transition: none; }
+  .hero .hero-content, .navbar.navbar, .section-title { animation: none; }
   .navbar .navbar-links { transition: none; }
 }

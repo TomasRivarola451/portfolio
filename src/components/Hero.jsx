@@ -30,6 +30,7 @@ const HeroBackground = memo(function HeroBackground() {
         scrambleRadius={0.1}
         clickEffect="wave"
         intro={true}
+        introOffset={0.5}
         lightMode={false}
         fontFamily={'"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'}
       />
