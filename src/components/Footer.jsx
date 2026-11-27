@@ -1,7 +1,7 @@
 import "../styles/Footer.css";
 
 const Footer = ({ language }) => (
-  <footer className="portfolio-footer" data-reveal="fade">
+  <footer className="portfolio-footer">
     <div className="portfolio-footer-inner">
       <a className="portfolio-footer-logo" href="#hero" aria-label={language === "es" ? "Tomás Rivarola — Inicio" : "Tomás Rivarola — Home"}>TR<span>.</span></a>
       <p>© {new Date().getFullYear()} Tomás Rivarola</p>

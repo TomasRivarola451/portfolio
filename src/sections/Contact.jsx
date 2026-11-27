@@ -45,11 +45,11 @@ const Contact = ({ language }) => {
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-heading">
       <div className="contact-container">
-        <div className="contact-editorial">
-          <p className="contact-availability" data-reveal="up"><span aria-hidden="true" />{t.availability}</p>
-          <h2 id="contact-heading" data-reveal="up" data-reveal-delay="60">{t.title}<span>.</span></h2>
-          <p className="contact-description" data-reveal="up" data-reveal-delay="120">{t.description}</p>
-          <div className="contact-direct" data-reveal="up" data-reveal-delay="160">
+        <div className="contact-editorial" data-reveal="up">
+          <p className="contact-availability"><span aria-hidden="true" />{t.availability}</p>
+          <h2 id="contact-heading">{t.title}<span>.</span></h2>
+          <p className="contact-description">{t.description}</p>
+          <div className="contact-direct">
             <p>{t.direct}</p>
             <a className="contact-email" href="mailto:tomasrivarola451@gmail.com">{t.emailLink}<span aria-hidden="true">↗</span></a>
             <nav className="contact-socials" aria-label={t.socials}>
@@ -59,7 +59,7 @@ const Contact = ({ language }) => {
             </nav>
           </div>
         </div>
-        <form ref={form} onSubmit={sendEmail} className="contact-form" aria-busy={status === "sending"} data-reveal="up" data-reveal-delay="80">
+        <form ref={form} onSubmit={sendEmail} className="contact-form" aria-busy={status === "sending"} data-reveal="up">
           <div className="contact-field">
             <label htmlFor="contact-name"><span aria-hidden="true">01 /</span>{t.name}</label>
             <input id="contact-name" type="text" name="user_name" autoComplete="name" placeholder={t.placeholderName} required />

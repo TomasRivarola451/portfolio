@@ -52,7 +52,7 @@ const Skills = ({ language }) => {
           </header>
           <div className="skills-categories">
             {categoryIds.map((category, index) => (
-              <section className="skills-category" key={category} data-reveal="up" data-reveal-delay={index * 70} aria-labelledby={`skills-${category}-heading`}>
+              <section className="skills-category" key={category} data-reveal="up" aria-labelledby={`skills-${category}-heading`}>
                 <header className="skills-category-heading">
                   <span className="skills-number" aria-hidden="true">{String(index + 1).padStart(2, "0")} /</span>
                   <h3 id={`skills-${category}-heading`}>{copy.categories[category]}</h3>
@@ -71,7 +71,7 @@ const Skills = ({ language }) => {
             ))}
           </div>
         </div>
-        <ul className="skills-complementary" data-reveal="fade" aria-label={copy.complementaryLabel}>
+        <ul className="skills-complementary" aria-label={copy.complementaryLabel}>
           {copy.complementary.map(item => <li key={item}>{item}</li>)}
         </ul>
       </div>

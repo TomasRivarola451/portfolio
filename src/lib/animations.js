@@ -1,58 +1,82 @@
-// Base content is always visible. Native animations are a progressive enhancement.
+// Base content stays visible when a reveal is skipped or unsupported.
 const seen = new WeakSet();
+const LOOKAHEAD = 64;
+const MAX_ACTIVE = 3;
+const EASING = "cubic-bezier(.22, 1, .36, 1)";
 let controller = null;
 
 export function initializeAnimations() {
-  if (controller) return undefined;
-  if (!window.IntersectionObserver || !Element.prototype.animate) return undefined;
+  if (controller || !window.IntersectionObserver || !Element.prototype.animate) return;
+
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobile = window.matchMedia("(max-width: 767px), (pointer: coarse)");
   const observed = new WeakSet();
   const active = new Map();
-  let disposed = false;
 
   const finish = element => {
-    active.get(element)?.cancel();
+    const animation = active.get(element);
     active.delete(element);
+    observer.unobserve(element);
+    animation?.cancel();
   };
+
   const observer = new IntersectionObserver(entries => {
+    const viewportHeight = document.documentElement.clientHeight;
     for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
       const element = entry.target;
-      observer.unobserve(element);
+      if (!entry.isIntersecting) {
+        if (active.has(element) && entry.boundingClientRect.bottom <= 0) finish(element);
+        continue;
+      }
+      if (seen.has(element)) continue;
       seen.add(element);
-      if (reduced.matches || disposed) continue;
-      const mobile = window.matchMedia("(max-width: 600px)").matches;
+
+      // A fast scroll or anchor jump can land beyond the entry band.
+      // Show that content immediately and never queue a delayed reveal.
+      const top = entry.boundingClientRect.top;
+      if (reduced.matches || top < viewportHeight - 40 ||
+          active.size >= MAX_ACTIVE || element.contains(document.activeElement)) {
+        observer.unobserve(element);
+        continue;
+      }
+
+      const compact = mobile.matches;
       const direction = element.dataset.reveal;
-      const distance = mobile ? 12 : 20;
-      const transform = direction === "fade" ? "none"
-        : !mobile && direction === "left" ? `translate3d(-${distance}px,0,0)`
-        : !mobile && direction === "right" ? `translate3d(${distance}px,0,0)`
-        : `translate3d(0,${distance}px,0)`;
-      const delay = Math.min(mobile ? 80 : 210, Math.max(0, Number(element.dataset.revealDelay) || 0));
+      let transform = `translateY(${compact ? 10 : 16}px)`;
+      if (!compact && direction === "left") transform = "translateX(-20px)";
+      if (!compact && direction === "right") transform = "translateX(20px)";
+
       try {
         const animation = element.animate([
-          { opacity: 0, transform },
+          { opacity: compact || top < viewportHeight ? 0.86 : 0.62, transform },
           { opacity: 1, transform: "none" },
-        ], { duration: mobile ? 480 : 560, delay, easing: "cubic-bezier(.2,.65,.3,1)", fill: "backwards" });
+        ], { duration: compact ? 800 : 960, easing: EASING });
         active.set(element, animation);
-        animation.finished.catch(() => {}).finally(() => {
-          if (active.get(element) === animation) active.delete(element);
-        });
-      } catch { /* Unsupported effects leave the visible base content untouched. */ }
+        const settle = () => {
+          if (active.get(element) !== animation) return;
+          active.delete(element);
+          observer.unobserve(element);
+        };
+        animation.finished.then(settle, settle);
+      } catch {
+        observer.unobserve(element);
+      }
     }
-  }, { rootMargin: "0px 0px -16px 0px", threshold: 0 });
+  }, { rootMargin: `0px 0px ${LOOKAHEAD}px 0px`, threshold: 0 });
 
   const observeNew = () => {
     for (const element of document.querySelectorAll("[data-reveal]")) {
       if (seen.has(element) || observed.has(element)) continue;
       observed.add(element);
-      const rect = element.getBoundingClientRect();
-      // Reloads at a lower section and initially visible content never flash hidden.
-      if (reduced.matches || (rect.top < innerHeight && rect.bottom > 0)) {
+      // Refreshes, restored scroll positions and initial content stay visible.
+      if (reduced.matches || element.getBoundingClientRect().top < document.documentElement.clientHeight) {
         seen.add(element);
-      } else observer.observe(element);
+      } else {
+        observer.observe(element);
+      }
     }
   };
+
   const onFocus = event => {
     for (const element of active.keys()) if (element.contains(event.target)) finish(element);
   };
@@ -63,8 +87,8 @@ export function initializeAnimations() {
   reduced.addEventListener("change", onMotionChange);
   controller = { observeNew };
   observeNew();
+
   return () => {
-    disposed = true;
     observer.disconnect();
     document.removeEventListener("focusin", onFocus);
     reduced.removeEventListener("change", onMotionChange);
