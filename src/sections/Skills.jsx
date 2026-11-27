@@ -46,7 +46,7 @@ const Skills = ({ language }) => {
     <section className="skills-section" id="skills" aria-labelledby="skills-heading">
       <div className="skills-container">
         <div className="skills-layout">
-          <header className="skills-intro" data-reveal="up">
+          <header className="skills-intro" data-reveal="fade">
             <h2 id="skills-heading">{copy.title}<span>.</span></h2>
             <p>{copy.intro}</p>
           </header>
@@ -71,7 +71,7 @@ const Skills = ({ language }) => {
             ))}
           </div>
         </div>
-        <ul className="skills-complementary" aria-label={copy.complementaryLabel}>
+        <ul className="skills-complementary" data-reveal="fade" aria-label={copy.complementaryLabel}>
           {copy.complementary.map(item => <li key={item}>{item}</li>)}
         </ul>
       </div>

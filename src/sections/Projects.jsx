@@ -176,11 +176,11 @@ const ProjectShowcase = ({ project, index, copy }) => {
 
   return (
     <article className={`project-row${index % 2 ? " project-row-reversed" : ""}`} aria-labelledby={headingId}>
-      <header className="project-heading">
+      <header className="project-heading" data-reveal="up">
         <p className="project-number">{String(index + 1).padStart(2, "0")} /</p>
         <h3 id={headingId}>{text.name}</h3>
       </header>
-      <figure className="project-visual" data-reveal={index % 2 ? "left" : "right"}>
+      <figure className="project-visual" data-reveal={index % 2 ? "left" : "right"} data-reveal-delay="70">
         <div className="project-preview" id={previewId} aria-busy={pending}>
           <img src={project.images[displayed]} alt={`${project.name} — ${copy.devices[displayed]}`} loading="lazy" decoding="async" />
         </div>

@@ -1,0 +1,18 @@
+/* Only a successfully registered observer can put a block in the waiting state. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .reveal-ready.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: opacity 800ms ease, transform 800ms ease;
+  }
+  .reveal-ready[data-reveal="fade"] { transform: none; }
+  .reveal-ready.is-revealed[data-reveal-delay="70"] { transition-delay: 70ms; }
+  .reveal-ready:focus-within { opacity: 1; transform: none; transition: none; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 767px) {
+  .reveal-ready:not(.is-revealed):not([data-reveal="fade"]):not(:focus-within) { transform: translateY(16px); }
+}

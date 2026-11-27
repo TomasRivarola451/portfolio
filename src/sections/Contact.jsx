@@ -59,7 +59,7 @@ const Contact = ({ language }) => {
             </nav>
           </div>
         </div>
-        <form ref={form} onSubmit={sendEmail} className="contact-form" aria-busy={status === "sending"} data-reveal="up">
+        <form ref={form} onSubmit={sendEmail} className="contact-form" aria-busy={status === "sending"} data-reveal="up" data-reveal-delay="70">
           <div className="contact-field">
             <label htmlFor="contact-name"><span aria-hidden="true">01 /</span>{t.name}</label>
             <input id="contact-name" type="text" name="user_name" autoComplete="name" placeholder={t.placeholderName} required />

@@ -1,100 +1,46 @@
-// Base content stays visible when a reveal is skipped or unsupported.
-const seen = new WeakSet();
-const LOOKAHEAD = 64;
-const MAX_ACTIVE = 3;
-const EASING = "cubic-bezier(.22, 1, .36, 1)";
-let controller = null;
+import "../styles/Reveal.css";
 
 export function initializeAnimations() {
-  if (controller || !window.IntersectionObserver || !Element.prototype.animate) return;
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motion.matches || !window.IntersectionObserver) return;
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobile = window.matchMedia("(max-width: 767px), (pointer: coarse)");
-  const observed = new WeakSet();
-  const active = new Map();
-
-  const finish = element => {
-    const animation = active.get(element);
-    active.delete(element);
-    observer.unobserve(element);
-    animation?.cancel();
+  const blocks = document.querySelectorAll("[data-reveal]");
+  const reveal = block => {
+    block.classList.add("is-revealed");
+    observer.unobserve(block);
   };
-
   const observer = new IntersectionObserver(entries => {
-    const viewportHeight = document.documentElement.clientHeight;
     for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) {
-        if (active.has(element) && entry.boundingClientRect.bottom <= 0) finish(element);
-        continue;
-      }
-      if (seen.has(element)) continue;
-      seen.add(element);
-
-      // A fast scroll or anchor jump can land beyond the entry band.
-      // Show that content immediately and never queue a delayed reveal.
-      const top = entry.boundingClientRect.top;
-      if (reduced.matches || top < viewportHeight - 40 ||
-          active.size >= MAX_ACTIVE || element.contains(document.activeElement)) {
-        observer.unobserve(element);
-        continue;
-      }
-
-      const compact = mobile.matches;
-      const direction = element.dataset.reveal;
-      let transform = `translateY(${compact ? 10 : 16}px)`;
-      if (!compact && direction === "left") transform = "translateX(-20px)";
-      if (!compact && direction === "right") transform = "translateX(20px)";
-
-      try {
-        const animation = element.animate([
-          { opacity: compact || top < viewportHeight ? 0.86 : 0.62, transform },
-          { opacity: 1, transform: "none" },
-        ], { duration: compact ? 800 : 960, easing: EASING });
-        active.set(element, animation);
-        const settle = () => {
-          if (active.get(element) !== animation) return;
-          active.delete(element);
-          observer.unobserve(element);
-        };
-        animation.finished.then(settle, settle);
-      } catch {
-        observer.unobserve(element);
+      if (!entry.isIntersecting) continue;
+      // Oversized blocks may never reach a ratio of 0.1 on a small screen.
+      if (entry.intersectionRatio >= 0.1 || entry.boundingClientRect.height > entry.rootBounds?.height) {
+        reveal(entry.target);
       }
     }
-  }, { rootMargin: `0px 0px ${LOOKAHEAD}px 0px`, threshold: 0 });
-
-  const observeNew = () => {
-    for (const element of document.querySelectorAll("[data-reveal]")) {
-      if (seen.has(element) || observed.has(element)) continue;
-      observed.add(element);
-      // Refreshes, restored scroll positions and initial content stay visible.
-      if (reduced.matches || element.getBoundingClientRect().top < document.documentElement.clientHeight) {
-        seen.add(element);
-      } else {
-        observer.observe(element);
-      }
-    }
-  };
+  }, { threshold: [0, 0.1], rootMargin: "0px" });
 
   const onFocus = event => {
-    for (const element of active.keys()) if (element.contains(event.target)) finish(element);
+    const block = event.target.closest("[data-reveal]");
+    if (block) reveal(block);
   };
-  const onMotionChange = () => {
-    if (reduced.matches) for (const element of active.keys()) finish(element);
-  };
-  document.addEventListener("focusin", onFocus);
-  reduced.addEventListener("change", onMotionChange);
-  controller = { observeNew };
-  observeNew();
-
-  return () => {
+  const cleanup = () => {
     observer.disconnect();
     document.removeEventListener("focusin", onFocus);
-    reduced.removeEventListener("change", onMotionChange);
-    for (const element of active.keys()) finish(element);
-    controller = null;
+    motion.removeEventListener("change", cleanup);
+    for (const block of blocks) block.classList.remove("reveal-ready", "is-revealed");
   };
-}
 
-export function refreshAnimations() { controller?.observeNew(); }
+  try {
+    for (const block of blocks) {
+      // Preserve the current reading position on a reload or a direct link.
+      if (window.scrollY > 0 && block.getBoundingClientRect().top < window.innerHeight) continue;
+      observer.observe(block);
+      block.classList.add("reveal-ready");
+    }
+    document.addEventListener("focusin", onFocus);
+    motion.addEventListener("change", cleanup);
+  } catch {
+    cleanup();
+  }
+  return cleanup;
+}
